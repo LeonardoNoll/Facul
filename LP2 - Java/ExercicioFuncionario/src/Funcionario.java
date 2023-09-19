@@ -1,34 +1,32 @@
-//-----------------------------------------
-// Implementacao parcial da classe Aluno
-//-----------------------------------------
-
 public class Funcionario {
 
-  //-----------------------------------------
-  //-------------- Atributos ----------------
-  //-----------------------------------------
+    private String nome;
+    private Endereco endereco;
 
-  //Dois atributos públicos.
-  //Não devem ser utilizados dessa forma pois violam o conceito de encapsulamento.
-  public String nome;
-  public float nota1;
+    public Funcionario(String nome) {
+        setNome(nome);
+    }
 
-  //Atributo privado. Forma correta. Implementa o encapsulamento.
-  private float nota2;
-  
-  //-----------------------------------------
-  //-------------- Métodos ------------------
-  //-----------------------------------------
+    public Funcionario(String nome, Endereco endereco) {
+        this.nome = nome;
+        this.endereco = endereco;
+    }
 
-  //Método para atribuir a nota 2 ao objeto aluno.
-  public void registraNota2(float n2) {
-    if (n2 >=0 && n2<=10)
-      nota2 = n2;
-  }//registraNota2()
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
-  //Método que retorna a nota 2 do aluno.
-  public float retornaNota2() {
-    return nota2;
-  }//retornaNota2()
+    public void setNome(String nome) {
+        if (nome.length() > 0) {
+            this.nome = nome;
+        } else {
+            throw new RuntimeException("Nome não pode ser vazio");
+        }
+    }
 
-}//Final da classe Aluno.
+    public String getNome() {
+        return nome;
+    }
+
+
+}
