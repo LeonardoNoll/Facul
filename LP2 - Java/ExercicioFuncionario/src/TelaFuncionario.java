@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class TelaFuncionario {
     private Funcionario funcionario;
+    private Endereco endereco;
     private Scanner scan = new Scanner(System.in);
     
     //Controi tela atrelada a 1 funcionario
@@ -37,24 +38,31 @@ public class TelaFuncionario {
         System.out.print("Digite o número: ");
         int numero = scan.nextInt();
         scan.nextLine();
-        Endereco e = new Endereco(rua, numero);
-        funcionario.setEndereco(e);
+        endereco = new Endereco(rua, numero);
+        funcionario.setEndereco(endereco);
     }
 
     //Imprime funcionario
-    public String imprimeFuncionario() {
-        return funcionario.toString();
+    public void imprimeFuncionario(Funcionario f) {
+        System.out.println(f.toString());
     }
 
-    public String imprimeBonito(){
-        return "Nome: " + this.funcionario.getNome() + "\n" 
-             + "Endereço: " + this.funcionario.getEndereco().toString();
+    public void imprimeBonito(){
+        System.out.println("Nome: " + funcionario.getNome() + "\n" 
+             + "Endereço: " + endereco.getRua() +", " + endereco.getNumero());
     }
 
     //Le todos os dados de uma vez
     public void leTodosDados() {
         leNome();
         leEndereco();
+    }
+
+    public boolean compareFuncionario(Funcionario a, Funcionario b){
+        if (a.toString() == b.toString()){
+            return true;
+        }
+        return false;
     }
 
 
