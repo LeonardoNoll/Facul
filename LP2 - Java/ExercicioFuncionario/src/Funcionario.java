@@ -28,5 +28,13 @@ public class Funcionario {
         return nome;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{nome=" + nome + ", endereco=" + endereco + '}';
+    }
 
 }

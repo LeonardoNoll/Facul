@@ -1,9 +1,9 @@
 public class Endereco {
     
     private String rua;
-    private double numero;
+    private int numero;
 
-    public Endereco(String rua, double numero) {
+    public Endereco(String rua, int numero) {
         setRua(rua);
         setNumero(numero);
     }
@@ -20,11 +20,11 @@ public class Endereco {
         }
     }
 
-    public double getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(double numero) {
+    public void setNumero(int numero) {
         if (numero > 0) {
             this.numero = numero;
         } else {
@@ -34,6 +34,6 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" + "rua=" + rua + ", numero=" + numero + '}';
+        return "Endereco{rua=" + rua + ", numero=" + numero + '}';
     }
 }
