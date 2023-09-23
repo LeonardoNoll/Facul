@@ -26,8 +26,7 @@ public class TesteFuncionario{
     tela.imprimeFuncionario(f1);
     // tela.setFuncionario(f2);
     tela.imprimeFuncionario(f2);
-    System.out.println("Funcionarios são iguais? " + tela.compareFuncionario(f1, f2));
-
+    System.out.println("Funcionarios são iguais? " + (f1.equals(f2)? "Sim" : "Não"));
   }
 }
 

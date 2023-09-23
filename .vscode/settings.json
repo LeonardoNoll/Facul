@@ -1,8 +1,6 @@
 {
   "java.project.sourcePaths": [
-    "LP2 - Java/Projeto_Aluno_v1.1/src",
     "LP2 - Java/ExercicioFuncionario/src",
-    "LP2 - Java/Associacoes/src",
-    "LP2 - Java/ProjetoTelaAluno"
+    "LP2 - Java/Associacoes/src"
   ]
 }

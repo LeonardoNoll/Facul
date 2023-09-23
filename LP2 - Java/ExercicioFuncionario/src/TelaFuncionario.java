@@ -47,6 +47,7 @@ public class TelaFuncionario {
         System.out.println(f.toString());
     }
 
+    //Imprime funcionario de forma ajeitada
     public void imprimeBonito(){
         System.out.println("Nome: " + funcionario.getNome() + "\n" 
              + "Endereço: " + endereco.getRua() +", " + endereco.getNumero());
@@ -57,13 +58,4 @@ public class TelaFuncionario {
         leNome();
         leEndereco();
     }
-
-    public boolean compareFuncionario(Funcionario a, Funcionario b){
-        if (a.toString() == b.toString()){
-            return true;
-        }
-        return false;
-    }
-
-
 }

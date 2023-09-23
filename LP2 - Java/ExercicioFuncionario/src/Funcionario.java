@@ -37,4 +37,14 @@ public class Funcionario {
         return "Funcionario{nome=" + nome + ", endereco=" + endereco + '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Funcionario) {
+            Funcionario f = (Funcionario) obj;
+            return this.nome.equals(f.nome) && this.endereco.toString().equals(f.endereco.toString());
+        } else {
+            return false;
+        }
+    }
+
 }
