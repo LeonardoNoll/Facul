@@ -25,7 +25,7 @@
 
     int main(){
         int pilha[FIM], topo=INICIO;
-        push(pilha,&topo,10);
+        printf("Valor de retorno:%d\n", push(pilha,&topo,10));
         printf("Valor topo: %d\n",pilha[topo]);
         push(pilha,&topo,20);
         printf("Valor topo: %d\n",pilha[topo]);
