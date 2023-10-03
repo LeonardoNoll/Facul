@@ -14,7 +14,7 @@
     }
 
     int pop(int pilha[],int * topo,int * status){
-        int valor;
+        int *valor;
         if(*topo==-1){
             return 0;
         } else {
@@ -41,3 +41,4 @@
 
         return 0;
     }
+
