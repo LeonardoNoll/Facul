@@ -13,7 +13,7 @@
         }
     }
 
-    int pop(int pilha[],int * topo,int * status){
+    voi pop(int pilha[],int * topo,int * status){
         int *valor;
         if(*topo==-1){
             return 0;
@@ -32,11 +32,11 @@
         printf("Valor topo: %d\n",pilha[topo-1]);
         printf("Valor de retorno:%d\n", push(pilha,&topo,30));
         printf("Valor topo: %d\n",pilha[topo-1]);
-        printf("Valor de retorno:%d\n", pop(pilha,&topo,40));
+        printf("Valor de retorno:%d\n", push(pilha,&topo,40));
         printf("Variável topo:%d\n",topo);
         printf("Array todo\n");
         for(int i=0;i<3;i++){
-            printf("%d\n",pilha[i]);
+            printf("%d ",pilha[i]);
         }
 
         return 0;
