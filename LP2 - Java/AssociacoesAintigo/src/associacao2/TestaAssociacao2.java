@@ -48,10 +48,10 @@ public class TestaAssociacao2 {
     //a1.setResidencia(null);
 
     //Esta linha irá gerar uma exceção, pois Aluno não pode ter uma Residencia null.
-    //a1.setResidencia(r1);
+    a1.setResidencia(r1);
 
     //Não é possível instanciar um Aluno passando uma Residencia null:
-   // a1 = new Aluno("Jose", 8, 9, null);
+    a1 = new Aluno("Jose", 8, 9, null);
 
     //Não é possível instanciar um Aluno passando uma Residencia null:
     a1 = new Aluno("Jose", 8, 9, r1);

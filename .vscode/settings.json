@@ -1,6 +1,4 @@
 {
-  "java.project.sourcePaths": [
-    "LP2 - Java/Aula5",
-    "LP2 - Java/ExercicioFuncionario"
-  ]
+  "java.project.sourcePaths": ["LP2 - Java/NotasAlunos"],
+  "java.dependency.syncWithFolderExplorer": false
 }

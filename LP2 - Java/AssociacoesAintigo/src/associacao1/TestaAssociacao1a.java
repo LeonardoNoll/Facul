@@ -23,10 +23,6 @@ public class TestaAssociacao1a {
     //Associa a2 a r2:
     a2.setResidencia(r2);
     System.out.println(a2);
-    
-    Residencia r4;
-    r4 = a2.getResidencia();
-    System.out.println("R4 = " + r4);
 
     System.out.println("=============== Etapa 3 ===============");
     //Associa Aluno a3 à Residencia r3, instanciando primeiro a Residencia:
@@ -36,7 +32,7 @@ public class TestaAssociacao1a {
     a3 = new Aluno("Carlos", 9, 9);
     System.out.println(a3);
     //Associa a3 a r3:
-    a3.setResidencia(a2.getResidencia());
+    a3.setResidencia(r3);
     System.out.println(a3);
 
   }//main()
