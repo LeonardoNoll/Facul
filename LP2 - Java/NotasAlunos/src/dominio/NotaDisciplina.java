@@ -8,13 +8,14 @@ public class NotaDisciplina {
 
     //*Construtor
     protected NotaDisciplina(float n, Disciplina d, Situacao s) {
-        if (s == null) throw new RuntimeException("Situacao invalida"); //1..1
-        else this.situacao = s;
-
         if (d == null) throw new RuntimeException("Disciplina invalida"); //1..1
         else this.disciplina = d;
-
-        if (nota > 10 || nota < 0) throw new RuntimeException("Nota invalida");
+        
+        if (n > 10 || n < 0) throw new RuntimeException("Nota invalida");
+        else this.nota = n;
+        
+        if (s == null) throw new RuntimeException("Situacao invalida"); //1..1
+        else this.situacao = s;
     }
 
 

@@ -1,4 +1,9 @@
 {
-  "java.project.sourcePaths": ["LP2 - Java/NotasAlunos"],
+  "java.project.sourcePaths": [
+    "LP2 - Java/ExercicioFuncionario/src",
+    "LP2 - Java/Associacoes/src",
+    "LP2 - Java/Associacoes",
+    "LP2 - Java/NotasAlunos"
+  ],
   "java.dependency.syncWithFolderExplorer": false
 }
