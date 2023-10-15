@@ -1,4 +1,4 @@
-//!EM ANDAMENTO!!
+//*ESTADO PRONTO */
 package src.dominio;
 public class NotaDisciplina {
     private float nota;
