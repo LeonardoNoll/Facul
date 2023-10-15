@@ -37,6 +37,7 @@ public class AnoSemestre {
     //*Diversos */
     public NotaDisciplina registraNotaDisciplina(float n, Disciplina d, Situacao s){
         NotaDisciplina notaD = new NotaDisciplina(n,d,s); //Instancia a nota
+        notaD.setAnoSemestre(this); //Associa o anoSemestre a nota
         this.notas.add(notaD); //Associa a nota ao anoSemestre
         return notaD;
     }
