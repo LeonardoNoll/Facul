@@ -1,3 +1,4 @@
+//*ESTADO: "PRONTO" */
 package src.dominio;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class Matricula {
         if (ano < 1) throw new RuntimeException("Ano invalido"); 
         else this.ano = ano;
 
-        if (semestre < 1) throw new RuntimeException("Semestre invalido"); 
+        if (sem < 1) throw new RuntimeException("Semestre invalido"); 
         else this.semestre = sem;
 
         setAluno(a);
@@ -52,8 +53,11 @@ public class Matricula {
     public void registraAnoSemestre(int ano, int sem){ //Instancia e vincula anoSemestre a matricula
         AnoSemestre as;
         as = new AnoSemestre(ano, sem, this);
+        anoSemestres.add(as); 
+    }
 
-        anoSemestres.add(as); //!Não sei se tá funcionando
+    public List<AnoSemestre> listAnoSemestres(){
+        return anoSemestres;
     }
 
     protected void setAluno(Aluno a) {

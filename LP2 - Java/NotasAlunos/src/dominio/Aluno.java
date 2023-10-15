@@ -1,5 +1,6 @@
-package src.dominio;
+//*ESTADO: PRONTO */
 
+package src.dominio;
 import java.util.List;
 
 public class Aluno {
