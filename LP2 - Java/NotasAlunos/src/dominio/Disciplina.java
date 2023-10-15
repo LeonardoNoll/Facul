@@ -1,5 +1,5 @@
 package src.dominio;
-
+//*ESTADO: COMPLETO */
 public class Disciplina {
     private String codigo;
     private String nome;
