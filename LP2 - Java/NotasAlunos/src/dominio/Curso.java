@@ -1,5 +1,5 @@
+//*ESTADO: COMPLETO */
 package src.dominio;
-//!!EM ANDAMENTO!!
 import java.util.List;
 
 public class Curso {
@@ -35,6 +35,4 @@ public class Curso {
         if (m == null) throw new RuntimeException("Matricula invalida");
         else this.matriculas.add(m);
     }
-
-
 }

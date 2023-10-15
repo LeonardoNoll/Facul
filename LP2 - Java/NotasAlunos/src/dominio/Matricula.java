@@ -68,6 +68,6 @@ public class Matricula {
     protected void setCurso(Curso c){
         if (c == null) throw new RuntimeException("Curso invalido");
         else this.curso = c;
-        this.curso.incluiMatricula(this);
+        // this.curso.incluiMatricula(this);
     }
 }
