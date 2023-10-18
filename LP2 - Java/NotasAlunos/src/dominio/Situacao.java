@@ -1,5 +1,5 @@
 //*ESTADO: PRONTO */
-package src.dominio;
+package dominio;
 public class Situacao {
     private String situacao;
     // private NotaDisciplina notaDisciplina; //Acho q pode ser retirado

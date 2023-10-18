@@ -1,5 +1,5 @@
 //*ESTADO: COMPLETO */
-package src.dominio;
+package dominio;
 import java.util.List;
 
 public class Curso {

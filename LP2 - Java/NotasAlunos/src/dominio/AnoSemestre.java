@@ -1,5 +1,5 @@
 //*ESTADO: PRONTO */
-package src.dominio;
+package dominio;
 import java.util.List;
 
 public class AnoSemestre {

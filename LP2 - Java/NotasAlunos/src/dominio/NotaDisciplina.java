@@ -1,5 +1,5 @@
 //*ESTADO PRONTO */
-package src.dominio;
+package dominio;
 public class NotaDisciplina {
     private float nota;
     private Disciplina disciplina;

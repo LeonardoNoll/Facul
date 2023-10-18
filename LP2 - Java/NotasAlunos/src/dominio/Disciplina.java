@@ -1,4 +1,4 @@
-package src.dominio;
+package dominio;
 //*ESTADO: COMPLETO */
 public class Disciplina {
     private String codigo;
