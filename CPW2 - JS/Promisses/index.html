@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise</title>
+  </head>
+  <body>
+    <script>
+      async function createPromise(url) {
+        //Instancia Promise
+        return new Promise(function (resolve, reject) {
+          var xhr = new XMLHttpRequest();
+
+          //Requisição
+          xhr.open("GET", url, true);
+
+          //Tratamento de retorno
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+              if (xhr.status == 200) {
+                resolve(xhr.responseText);
+              } else {
+                reject("Erro na requisição");
+              }
+            }
+          };
+          xhr.send();
+        });
+      }
+
+      //Executa a Promise - try{}catch(){}
+      const main = async () => {
+        try {
+          let value = await createPromise("dados.json");
+          console.log(value);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      //Executa a Promise - .then().catch()
+      //   promisse
+      //     .then(function (result) {
+      //       console.log(result);
+      //     })
+      //     .catch(function (error) {
+      //       console.log(error);
+      //     });
+      main();
+    </script>
+  </body>
+</html>
