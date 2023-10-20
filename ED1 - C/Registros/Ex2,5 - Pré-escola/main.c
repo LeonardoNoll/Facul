@@ -7,7 +7,6 @@ typedef struct {
     char contato[50];
     int idade;
 } aluno;
-aluno a[5]; // Vetor de alunos
 
 
 void limpaBuffer(){
@@ -33,6 +32,7 @@ aluno setAluno (aluno a, int i){
 }
 
 void main(){
+    aluno a[5]; // Vetor de alunos
     int i;
     for (i = 0; i < 5; i++){
         a[i] = setAluno(a[i], i);

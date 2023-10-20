@@ -12,7 +12,6 @@ typedef struct {
     int notas[4];
     int faltas;
 } aluno;
-aluno a[5]; // Vetor de alunos
 
 aluno setAluno(aluno a){
     printf("===INFORME OS DADOS DO ALUNO===\n");
@@ -46,6 +45,7 @@ float media(aluno a){
 }
 
 void main(){
+    aluno a[5]; // Vetor de alunos
     int i;
     for (i = 0; i < 5; i++){
         a[i] = setAluno(a[i]);

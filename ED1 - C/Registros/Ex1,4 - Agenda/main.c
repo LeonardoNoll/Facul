@@ -31,11 +31,12 @@ void main(){
         printf("\n\n");
     }
     do {
-       printf("\nQue usuário você deseja consultar?\n"); 
-       printf("0. %s\n", lista[0].nome); 
-       printf("1. %s\n", lista[1].nome); 
-       printf("2. %s\n", lista[2].nome);
-       scanf("%d", &i);
+        printf("======================================");
+        printf("\nQue usuário você deseja consultar?\n"); 
+        printf("0. %s\n", lista[0].nome); 
+        printf("1. %s\n", lista[1].nome); 
+        printf("2. %s\n", lista[2].nome);
+        scanf("%d", &i);
        if ((i>-1) && (i<3)){
         printf("Nome: %s\n", lista[i].nome);
         printf("Telefone Fixo: %s\n", lista[i].fixo);

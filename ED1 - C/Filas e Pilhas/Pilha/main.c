@@ -28,5 +28,5 @@ void main(){
     int a; int b;
     
     for (int i; i<MAX; i++){
-        push()
+        push();
     }
