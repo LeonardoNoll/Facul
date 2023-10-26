@@ -13,6 +13,6 @@
 
 ### `Rpositórios relacionados`
 
--
--
+-  [Exercício Ajax](https://github.com/LeonardoNoll/ExercicioAjax)
+-  [Site CPW1](https://github.com/LeonardoNoll/site_climatech_prototipo)
 -
