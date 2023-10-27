@@ -1,39 +1,47 @@
 #include <stdio.h>
-
+#include <stdlib.h>
+#define MAX 5
 typedef struct{
 	char nome[150];
-	char fixo[15];
-	char celular[15];
-	char endereco[200];
-	char anivesariosario[10];
-} contato;
+    char telefone[15];
+    int idade;
+    char contato[150];
+} aluno;
 
-void leitura(contato *a){
-	printf("Digite o nome: ");	gets((*a).nome);
-	printf("Digite a data de nascimento: "); gets(a->aniversario);
-	printf("Digite o Celular: ");gets(a->celular);
-	printf("Digite o fixo: ");gets(a->fixo);
-	printf("Digite o endereco: ");gets(a->endereco);
+void leitura(aluno *a){
+	printf("Digite o nome do aluno: ");	gets((*a).nome);
+	printf("Digite a idade do aluno: ");scanf("%d",&(*a).idade); getchar();
+	printf("Nome do Contato de emergencia: ");gets((*a).contato);
+	printf("Digite o Telefone do Contato: ");gets(a->telefone);
+}
+void imprime(aluno a){
+	printf("Nome: %s\t Idade: %d anos\n",a.nome,a.idade);
+	printf("Contato: %s \tTelefone:%s\n",a.contato,a.telefone);
 }
 
-
-int main(){
-    contato* agenda[100];
-    int i,ocupados=0,opcao=1;
-    for(i=0;i<100;i++) agenda[i]=NULL;
-    while(opcao){
-        printf("Digite sua opcao: ");
-        scanf("%d",&opcao);getchar();
-        if(opcao==1){
-            agenda[ocupados]=(contato*) malloc(sizeof(contato));
-            if(agenda[ocupados]){
-                leitura(agenda[ocupados]);
-                ocupados++;
-            }
-        } else if(opcao==2){
-            //imprime os dados;
-        }
-    }
-    
-
+int main(int argc, char *argv[]) {
+	aluno* alunos[MAX];	
+	int i,num;
+	
+	for(i=0;i<MAX;i++)alunos[i]=0;
+	
+	for(i=0;i<MAX;i++) {
+		alunos[i]=(aluno*)malloc(sizeof(aluno));
+		if(alunos[i]!=0)
+			leitura(alunos[i]);
+	}
+	do{
+		printf("Digite um numero de 1 a %d:",MAX);
+		scanf("%d",&num);
+		if(num > 0 && num <= MAX) imprime(*alunos[num-1]);
+	} while(num != 0);
+	
+    printf("Tamanha do vetor alunos: %d\n", sizeof(alunos));
+    printf("Tamanho de um aluno: %d\n", sizeof(alunos[0]));
+    printf("Tamanho de um aluno: %d\n", sizeof(aluno));
+	for(i=0;i<MAX;i++){
+		if(alunos[i]!=0) free(alunos[i]);
+	}
+	
+	return 0;
 }

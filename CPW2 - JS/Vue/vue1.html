@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="message" />
+			{{message}}
+
+			<button v-on:click="main">Mostrar</button>
+			<div v-if="show">
+				<div v-for="item in car">{{item.name}} - {{item.model}}</div>
+			</div>
+
+			<button @click="load">Load</button>
+			<p>{{response}}</p>
+			<p>{{error}}</p>
+		</div>
+
+		<script>
+			const app = Vue.createApp({
+				data() {
+					return {
+						show: true,
+						message: ``,
+						response: null,
+						error: null,
+						car: [
+							{ name: "Gol", model: "Quadrado" },
+							{ name: "Honda", model: "City" },
+						],
+					};
+				},
+				methods: {
+					main() {
+						this.show = !this.show;
+						console.log("🚗");
+					},
+					async load() {
+						try {
+							let url = "https://api.github.com/repos/LeonardoNoll/Facul";
+							this.response = await axios.get(url);
+						} catch (error) {
+							this.error = error;
+						}
+					},
+				},
+			});
+			app.mount("#app");
+		</script>
+	</body>
+</html>

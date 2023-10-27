@@ -1,0 +1,3 @@
+A) O vetor alunos ocupa 40 bytes de memória.
+
+B) Cada elemento do vetor alunos ocupa 8 bytes de memória.
