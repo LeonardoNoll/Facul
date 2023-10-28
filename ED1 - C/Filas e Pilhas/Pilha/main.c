@@ -1,7 +1,7 @@
 #include <stdio.h>
-#define MAX 6
+#define MAX 7
 
-int push(int pilha[], int valor, int *topo){
+int push(int * pilha, int valor, int *topo){
     if (*topo==MAX) {
         printf("!Lista cheia!");
         return 0; 
@@ -18,7 +18,7 @@ int pop(int pilha[], int *topo){
         return 0;
     } else {
         (*topo)--;
-        return pilha[*topo+1];
+        return pilha[*topo];
     }
 }
 
@@ -27,6 +27,18 @@ void main(){
     int topo = 0;
     int a; int b;
     
-    for (int i; i<MAX; i++){
-        push();
+    for (int i = 0; i<MAX; i++){
+        push(pilha, i+1, &topo);
     }
+    for (int i = 0; i<MAX; i++){
+        printf("\n%d ", pilha[i]);
+    }
+
+     a = pop(pilha, &topo);
+        printf("\n\n\n%d ", a);
+     a = pop(pilha, &topo);
+        printf("\n\n\n%d ", a);
+     a = pop(pilha, &topo);
+        printf("\n\n\n%d ", a);
+
+}
