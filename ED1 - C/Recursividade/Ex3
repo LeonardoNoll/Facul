@@ -1,0 +1,2 @@
+O código da imagem desloca elementos para a direita, baseando-se no índice e número de elementos a serem deslocados.
+Recebendo o índice 3 e o número 3, os 3 elementos à direita da terceira posição são deslocados 1 posição para o lado.
