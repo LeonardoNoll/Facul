@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct{
+typedef struct contato{
     char nome[100];
     char email[150];
     char fone[15];
@@ -10,13 +10,13 @@ typedef struct{
 
 
 
-typedef struct{
+typedef struct no{
 	contato c;
 	struct no* prox;
 } no;
 
 
-typedef struct{
+typedef struct pilha{
      no *topo;
 } pilha;
 	
