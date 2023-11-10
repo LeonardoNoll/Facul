@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+		<title>Document</title>
+	</head>
+    <body>
+        <div id="app">
+
+
+            <script>
+                const app = Vue.createApp({
+                    data() {
+                        return {
+                            state: null,
+                            response: null,
+                            error: null,
+                        }
+                    },
+                    methods: {                                 //FUNÇÃO COM AXIOS
+                        async loadVideo() {
+                            try {
+                                this.response = await axios.get(videoUrl);
+                            } catch (error) {
+                                this.error = error;
+                                console.log(error);
+                            }
+                        }
+                    }
+                })
+
+                app.mount("#app");
+            </script>
+        </div>
+    </body>
