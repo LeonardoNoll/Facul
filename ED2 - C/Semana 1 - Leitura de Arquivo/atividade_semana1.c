@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 int main() {
     FILE *txt;
-    char linha[1024], letra, maiorPalavra[100];
+    char linha[1024], letra, maiorPalavra[100], *ultima;
     char** lista_de_linhas;
-    int i = 0, j, contadorA = 0, contadorDDD = 0;
+    int i = 0, j, contadorA = 0, contador_Direito = 0, contador_Dever = 0, contador_Deveres = 0;
 
     if((txt = fopen("arquivo_texto.txt", "r")) == NULL) {
         printf("Erro na abertura do arquivo");
@@ -51,18 +52,30 @@ int main() {
             }
         }
         printf("\n");
-        printf("A letra 'a' ou 'A' aparece %d vezes no arquivo", contadorA);
+        printf("A letra 'a' ou 'A' aparece %d vezes no arquivo\n", contadorA);
 
         // Ler quantas vezes as palavras "Direito", "Dever" ou "Deveres" aparecem no arquivo e descobrir qual a maior palavra
         rewind(txt);
         while (!feof(txt)) {
-            
+            fgets(linha, 1024, txt);
+            ultima = strtok (linha, " ");
+            while (ultima != NULL) {
+                for(i = 0; i < sizeof(ultima); i++)
+                if (strcmp(ultima, "direito") == 1) {
+                    contador_Direito++;
+                } else if (strcmp(ultima, "dever") == 1) {
+                    contador_Dever++;
+                } else if (strcmp(ultima, "deveres") == 1) {
+                    contador_Deveres++;
+                }
+                ultima = strtok (NULL, " ");
+            }
         }
-        
-
-
+        printf("\n");
+        printf("Instancias da palavra \"direito\": %i\n", contador_Direito);
+        printf("Instancias da palavra \"dever\": %i\n", contador_Dever);
+        printf("Instancias da palavra \"deveres\": %i\n", contador_Deveres);
         fclose(txt);
     }
-
     return 0;
 }
