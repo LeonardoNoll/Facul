@@ -78,19 +78,22 @@ int main()
             fgets(linha, 1024, txt);
             ultima = strtok(linha, " ");
             while (ultima != NULL)
-            {
-                for (i = 0; i < sizeof(ultima); i++) {
-                    printf("%d");
+            {   
+                i = 0;
+                while (ultima[i]) { //normaliza pra lowercase
+                    ultima[i] = tolower(ultima[i]);
+                    i++;
                 }
-                    if (strcmp(ultima, "direito") == 1)
-                    {
-                        contador_Direito++;
-                    }
-                if (strcmp(ultima, "dever") == 1)
+                printf("%s", ultima);
+                if (strncmp(ultima, "direito", 7) == 0) //tem que trabalhar esse
+                {
+                    contador_Direito++;
+                }
+                else if (strcmp(ultima, "dever") == 0)
                 {
                     contador_Dever++;
                 }
-                if (strcmp(ultima, "deveres") == 1)
+                else if (strcmp(ultima, "deveres") == 0)
                 {
                     contador_Deveres++;
                 }
@@ -98,9 +101,9 @@ int main()
             }
         }
         printf("\n");
-        printf("Instancias da palavra \"direito\": %i\n", contador_Direito);
-        printf("Instancias da palavra \"dever\": %i\n", contador_Dever);
-        printf("Instancias da palavra \"deveres\": %i\n", contador_Deveres);
+        printf("Instancias da palavra \"direito\": %d\n", contador_Direito);
+        printf("Instancias da palavra \"dever\": %d\n", contador_Dever);
+        printf("Instancias da palavra \"deveres\": %d\n", contador_Deveres);
         fclose(txt);
     }
     return 0;
