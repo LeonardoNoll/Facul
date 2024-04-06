@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
  
-#define tamanho 600000000
+#define TAMANHO 600000000
  
 int main() {
 long int i;
@@ -17,7 +17,7 @@ long int i;
     printf("b) Megabytes ocupados aproximadamente: %f\n", (float)(i * sizeof(double)/1000000));
     printf("\n");
     for(int j = 0; j < 5; j++) { 
-        printf("c) Posicao [%d] da memoria dinamicamente alocada %x\n", j, &a[j]);
+        printf("c) Posicao [%d] da memoria dinamicamente alocada %x\n", j, a+j);
     }
     printf("\n");
     printf("d) O deslocamento entre cada endereco de memoria sera de 8 bytes,\n visto que esse e o tamanho de variaveis do dipo double\n\n");
