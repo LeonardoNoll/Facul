@@ -1,4 +1,8 @@
 {
   "java.project.sourcePaths": ["LP2 - Java/NotasAlunos"],
-  "java.dependency.syncWithFolderExplorer": false
+  "java.dependency.syncWithFolderExplorer": false,
+  "files.associations": {
+    "string.h": "c",
+    "ctype.h": "c"
+  }
 }
