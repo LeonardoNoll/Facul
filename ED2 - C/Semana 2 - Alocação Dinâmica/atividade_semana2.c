@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define tamanho 300000000
+#define tamanho 20
 
 int main() {
 	long int i;
