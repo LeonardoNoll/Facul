@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <locale.h>
 
-//testando arquivo
+void clean_str(char *str) {
+    int last_char = strlen(str) - 1;
+    if(!isalpha(str[last_char]))
+    str[last_char] = '\0';
+}
+
 int main()
 {
+	setlocale(LC_ALL, "Portuguese");
+	
     FILE *txt;
-    char linha[1024], letra, maiorPalavra[100], *ultima;
+    char linha[1024], letra, *maiorPalavra, *ultima;
     char **lista_de_linhas;
     int i = 0, j, contadorA = 0, contador_Direito = 0, contador_Dever = 0, contador_Deveres = 0;
 
@@ -51,7 +59,7 @@ int main()
             // Imprime as linhas na ordem inversa e libera a memória alocada
             for (i; i < j; i++)
             {
-                printf("%s", lista_de_linhas[i]);
+//                printf("%s", lista_de_linhas[i]);
                 free(lista_de_linhas[i]);
             }
             free(lista_de_linhas);
@@ -63,9 +71,9 @@ int main()
         {
             letra = fgetc(txt);
             if (letra == 'a' || letra == 'A')
-            { // Conta apenas A sem acento
+            { 
+				// Conta apenas A sem acento
                 contadorA++;
-                // printf("%d\n", contadorA);
             }
         }
         printf("\n");
@@ -79,13 +87,16 @@ int main()
             ultima = strtok(linha, " ");
             while (ultima != NULL)
             {   
+            	clean_str(ultima);
                 i = 0;
                 while (ultima[i]) { //normaliza pra lowercase
                     ultima[i] = tolower(ultima[i]);
                     i++;
                 }
-                printf("%s", ultima);
-                if (strncmp(ultima, "direito", 7) == 0) //tem que trabalhar esse
+                if(sizeof(ultima) > sizeof(maiorPalavra)) {
+                	strcpy(maiorPalavra, ultima);
+				}
+                if (strcmp(ultima, "direito") == 0) //tem que trabalhar esse
                 {
                     contador_Direito++;
                 }
@@ -104,6 +115,8 @@ int main()
         printf("Instancias da palavra \"direito\": %d\n", contador_Direito);
         printf("Instancias da palavra \"dever\": %d\n", contador_Dever);
         printf("Instancias da palavra \"deveres\": %d\n", contador_Deveres);
+        printf("\n");
+        printf("Maior palavra: %s", maiorPalavra);
         fclose(txt);
     }
     return 0;
