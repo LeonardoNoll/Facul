@@ -13,7 +13,16 @@ typedef struct DADOS {
     char motivo[80]; 
 } DADOS;
 
-
+void busca(int x, DADOS *ptr, int TAMANHO) {
+    int meio=0, esquerda = -1, direita = TAMANHO; 
+    while (esquerda < direita-1) {  
+      int meio = (esquerda + direita)/2;
+      if ((ptr+meio)->icodigo < x) esquerda = meio;
+      else direita = meio; 
+   }
+if ((ptr+direita)->icodigo == x) printf("Valor Localizado na posição %d", direita); 
+else printf("Valor NAO Localizado"); 
+}
 
 int main() {
 setlocale(LC_ALL, "Portuguese");
@@ -36,8 +45,8 @@ if((pessoa = (DADOS*)malloc(999*sizeof(DADOS))) == NULL){
                 // printf("%d - %s - %s - %s - %s - %s\n", (pessoa+leituras)->icodigo, (pessoa+leituras)->esfera, (pessoa+leituras)->solicitante, (pessoa+leituras)->situacao, (pessoa+leituras)->data, (pessoa+leituras)->motivo);
                 leituras++;
                 if(leituras%999 == 0) {
-                    printf("%d\n", leituras);
                     //******** REALLOC ********//
+                    printf("%d\n", leituras);
                     if((pessoa = (DADOS*)realloc(pessoa,(999+leituras)*sizeof(DADOS)))== NULL) {
                         printf("Erro de realocação\n");
                         fclose(txt);
@@ -70,12 +79,15 @@ if((pessoa = (DADOS*)malloc(999*sizeof(DADOS))) == NULL){
                 leituras++;
             }
             free(bin);
-        }
-        free(pessoa);
+
+            //******** TESTANDO BUSCA BINARIA ********
+            printf("\nPosição do codigo %d no vetoer pessoas: ", (pessoa+4)->icodigo);
+            busca((pessoa+4)->icodigo,pessoa,leituras);            
+            free(pessoa);
     }
 system("pause");
     
 return 0; 
-}
+}}
 
     
