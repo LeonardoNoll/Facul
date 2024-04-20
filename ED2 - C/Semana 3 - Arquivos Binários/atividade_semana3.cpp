@@ -36,7 +36,7 @@ int main(void) {
             printf("[3] - Sair\n");
             printf("Digite a opcao: ");
             scanf("%d", &option);
-            
+  ]          
             switch(option) {
                 case 1:
                     insert(aluno+aluno_size, &aluno_size);
