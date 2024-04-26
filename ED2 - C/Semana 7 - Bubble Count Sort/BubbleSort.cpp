@@ -17,8 +17,7 @@ int main() {
  } else {
 		printf("Leitura aberta!\n");
 		while(!feof(fonte)) {
- 			fscanf(fonte, "%s", leitor);
- 			v[i] = atoi(leitor);
+ 			fscanf(fonte, "%d", &v[i]);
  			i++;
 		}
 		fclose(fonte);
