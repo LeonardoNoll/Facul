@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void main ()  {
+int main ()  {
     //Inicializa�� do Vetor
     int v[5]= {1,7,4,3,5},  n=5;
     int i, j, chave;
@@ -24,5 +24,6 @@ void main ()  {
 	for (int q=0; q<5; q++)	{
         		printf("%d \n",v[q]);
     	}
+	return 0;
 }
 
