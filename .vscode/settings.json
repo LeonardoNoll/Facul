@@ -1,5 +1,7 @@
 {
-  "java.project.sourcePaths": ["LP2 - Java/NotasAlunos"],
+  "java.project.sourcePaths": [
+    "PW1 - Java/ExerciciosAula6"
+  ],
   "java.dependency.syncWithFolderExplorer": false,
   "files.associations": {
     "string.h": "c",
