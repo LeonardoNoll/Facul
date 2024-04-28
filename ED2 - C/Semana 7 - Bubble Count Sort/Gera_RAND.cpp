@@ -6,15 +6,18 @@
 main(){
 int i;
 unsigned int ex;
-
 FILE *txt;
+char namefile[20];
 
-if((txt = fopen("Arquivo.txt", "w")) == NULL)    {
+printf("Conectando. . .\n");
+
+for(int j = 0; j < 100; j++){
+     sprintf(namefile, "bingchiling%d.txt", j);
+     if((txt = fopen(namefile, "wb")) == NULL)    {
         printf("Erro ao abrir arquivo");
-    }
- else {
-       
-	  	//Definindo a Semente Inicial do Gerador Aleatório
+        exit(1);
+     } else {
+	  	//Definindo a Semente Inicial do Gerador Aleatï¿½rio
 		ex = ((unsigned) time(NULL)) ; 
 		
 		srand(ex) ; 
@@ -22,11 +25,12 @@ if((txt = fopen("Arquivo.txt", "w")) == NULL)    {
 	     i = 0;
          while(i < 100000)
          {
-               float c = rand() % 100000;
-			   fprintf(txt, "%.0f\n",c);
+               float c = 100000;
+			   fwrite(&c, 1, sizeof(c),txt);
                ++i;
           }
 		fclose(txt);
+      }
       }
 }
 
