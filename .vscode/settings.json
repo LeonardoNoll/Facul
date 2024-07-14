@@ -5,7 +5,8 @@
   "java.dependency.syncWithFolderExplorer": false,
   "files.associations": {
     "string.h": "c",
-    "ctype.h": "c"
+    "ctype.h": "c",
+    "sstream": "cpp"
   },
   "java.debug.settings.onBuildFailureProceed": true
 }

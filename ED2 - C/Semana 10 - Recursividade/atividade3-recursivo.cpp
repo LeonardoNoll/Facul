@@ -14,7 +14,7 @@ int main() {
     printf("Digite um numero inteiro nao negativo: ");
     scanf("%llu", &n);
 
-    printf("%llu", decimalParaBinario(n, 1));
+    printf("%lLu", decimalParaBinario(n, 1));
 
     return 0;
 }
