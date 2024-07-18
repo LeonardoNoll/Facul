@@ -3,8 +3,6 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
-int contador = 0;
-
 void swap(int* a, int* b) {
   int tmp;
   tmp = *a;
@@ -24,7 +22,6 @@ int partition(int vec[], int left, int right) {
    return i;}
  
 void quickSort(int vec[], int left, int right) {
-  contador++;
   int r;
    if (right > left) {
     r = partition(vec, left, right);
@@ -35,19 +32,52 @@ void quickSort(int vec[], int left, int right) {
 main ()
 {
 
-//Inicializa��o do Vetor
-  int v[5]= {10,9,5,3,1}, n=5;
-	int i, j = 0,  aux;
+//Lendo arquivo
+    int* vetor;
+    int capacidade = 1000, tamanho = 0;
+    FILE *fonte, *saida;
+
+    //Ler arquivo
+    if((fonte = fopen("Arquivo.txt", "r")) == NULL) {
+ 	    printf("Erro na abertura de arquivo");
+        exit(1);
+    } else {
+		printf("Leitura aberta!\n");
+        vetor = (int*)malloc(capacidade * sizeof(int));
+		while(!feof(fonte)) {
+            fscanf(fonte, "%d", &vetor[tamanho]);
+            tamanho++;
+            if(tamanho == capacidade) {
+                capacidade += 1000;
+                int* vecAux = (int*)realloc(vetor, capacidade * sizeof(int));
+                if(vecAux == NULL) {
+                    printf("Erro ao realocar memória\n");
+                    free(vetor);
+                    fclose(fonte);
+                    exit(1);
+                }
+                vetor = vecAux;
+            }
+		}
+		fclose(fonte);
+		printf("Leitura fechada!\n");
+    }
 
 //Algoritmo de Ordena��o 
- quickSort(v,0,4);
+ quickSort(vetor,0,tamanho);
 
- //La�o de impress�o do Vetor
-	for (int q=0; q<5; q++)
-	{
-    printf("%d \n",v[q]);
-  }
-
-  printf("Numero de chamadas recursivas: %d", contador);
+//Escrever arquivo
+    if(((saida = fopen("SaidaQuickSort.txt", "w")) == NULL)) {
+        printf("Erro na gravacao");
+        free(vetor);
+        exit(1);
+    } else {
+        for (int j = 0; j < tamanho - 1; j++) {
+            fprintf(saida, "%d\n", vetor[j]);
+        }
+        fclose(saida);
+        free(saida);
+        free(vetor);
+    }
 }
 
