@@ -26,6 +26,9 @@ int main(void)
  printf("\n - Pos-Fixado: \t");
  Caminhamento_Pos_Fixado(a0);
 
+ printf("\n - Altura: %d\n", Altura(a0));
+
+ printf("\n - Encontrar: %c\n", Encontrar(a0, 'E')->info);
 return(0);
 }
 

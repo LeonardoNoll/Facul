@@ -13,7 +13,7 @@ TArvore *Cria(TArvore *esq, char info, TArvore* dir)
  p = (TArvore*) malloc(sizeof(TArvore));
  if (p == NULL)
      {
-      printf("ERRO FATAL: Falta de Memória\n");
+      printf("ERRO FATAL: Falta de Memï¿½ria\n");
       getchar();
       exit(0); 
 
@@ -79,4 +79,34 @@ TArvore *Destroi(TArvore *a)
      free(a);         
     }
  return(NULL);
+}
+
+int Altura(TArvore *a) {
+    if (a == NULL) {
+        return 0;
+    } else {
+        int esq = Altura(a->esq);
+        int dir = Altura(a->dir);
+        if (esq > dir) {
+            return esq + 1;
+        } else {
+            return dir + 1;
+        }
+    }
+}
+
+TArvore* Encontrar(TArvore* a, char info) {
+    if (a == NULL) {
+        return NULL;
+    } else if (a->info == info) {
+        return a;
+    } else {
+        TArvore* esq = Encontrar(a->esq, info);
+        TArvore* dir = Encontrar(a->dir, info);
+        if (esq != NULL) {
+            return esq;
+        } else {
+            return dir;
+        }
+    }
 }
