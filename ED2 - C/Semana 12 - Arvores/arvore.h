@@ -1,12 +1,12 @@
 typedef struct Nodo {
 		         struct Nodo *esq;
-		         char info;
+		         int info;
 		         struct Nodo *dir;
 		        } TNodo;
 
 typedef TNodo TArvore;
 
-TArvore *Cria(TArvore *esq, char info, TArvore* dir)
+TArvore *Cria(TArvore *esq, int info, TArvore* dir)
 {
  TArvore *p;
 
@@ -27,7 +27,6 @@ TArvore *Cria(TArvore *esq, char info, TArvore* dir)
  return p;
 }
 
-
 int Vazia(TArvore *a)
 {
  if (a == NULL)
@@ -36,28 +35,25 @@ int Vazia(TArvore *a)
      return(0);
 }
 
-
 void Caminhamento_Pre_Ordem(TArvore *a)
 {
  if (!Vazia(a))
     {
-     printf("%c ", a->info); 			
+     printf("%d ", a->info); 			
      Caminhamento_Pre_Ordem(a->esq);     
      Caminhamento_Pre_Ordem(a->dir);     
     }
 }
-
 
 void Caminhamento_In_Fixado(TArvore *a)
 {
  if (!Vazia(a))
     {
      Caminhamento_In_Fixado(a->esq);     
-     printf("%c ", a->info); 			
+     printf("%d ", a->info); 			
      Caminhamento_In_Fixado(a->dir);     
     }
 }
-
 
 void Caminhamento_Pos_Fixado(TArvore *a)
 {
@@ -65,10 +61,9 @@ void Caminhamento_Pos_Fixado(TArvore *a)
     {
      Caminhamento_Pos_Fixado(a->esq);      
      Caminhamento_Pos_Fixado(a->dir);      
-     printf("%c ", a->info); 			
+     printf("%d ", a->info); 			
     }
 }
-
 
 TArvore *Destroi(TArvore *a)
 {
@@ -81,32 +76,33 @@ TArvore *Destroi(TArvore *a)
  return(NULL);
 }
 
-int Altura(TArvore *a) {
+TArvore *insere_binario(TArvore *a, int info) {
     if (a == NULL) {
-        return 0;
+        a = Cria(NULL, info, NULL);
+    } else if (info < a->info) {
+        a->esq = insere_binario(a->esq, info);
+    } else if (info > a->info) {
+        a->dir = insere_binario(a->dir, info);
+    }
+    return a;
+}
+
+int busca(TArvore *a, int info) {
+    printf("\nComparando %d com %d", a->info, info);
+    if (a == NULL) {
+        printf("\nValor nao encontrado");
+        return 1;
+    } else if (a->info == info){
+        return 1;
+    } else if (a->info > info) {
+        return busca(a->esq, info) + 1;
     } else {
-        int esq = Altura(a->esq);
-        int dir = Altura(a->dir);
-        if (esq > dir) {
-            return esq + 1;
-        } else {
-            return dir + 1;
-        }
+        return busca(a->dir, info) + 1;
     }
 }
 
-TArvore* Encontrar(TArvore* a, char info) {
-    if (a == NULL) {
-        return NULL;
-    } else if (a->info == info) {
-        return a;
-    } else {
-        TArvore* esq = Encontrar(a->esq, info);
-        TArvore* dir = Encontrar(a->dir, info);
-        if (esq != NULL) {
-            return esq;
-        } else {
-            return dir;
-        }
-    }
-}
+//         5
+//     4       6
+// 2               7
+
+// falha ao buscar um valor inexistente
