@@ -3,43 +3,57 @@
 #include <string.h>
 
 typedef struct Cpessoa {
-	char nome[20];
-	int idade;
-};
+    char nome[20];
+    int idade;
+} Cpessoa;
 
-void insert(Cpessoa *target, int *i) {
-	FILE *bin;
-	
-	if((bin = fopen("arquivo_binario.txt","ab")) == NULL){
-		printf("Erro ao abrir o arquivo");
-	} else {
-		printf("Informe o nome: ");
-        scanf("%s", target[*i].nome);
-        printf("%s", target[*i].nome);
-		fclose(bin);
-	}
+void insert() {
+    Cpessoa aluno;
+    FILE *bin;
+
+    if((bin = fopen("arquivo_binario.bin", "ab")) == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+    } else {
+        printf("Digite o nome: ");
+        scanf("%s", aluno.nome);
+        printf("Digite a idade: ");
+        scanf("%d", &aluno.idade);
+        fwrite(&aluno, sizeof(Cpessoa), 1, bin);
+        fclose(bin);
+    }
 }
+
 void list() {
-	
+    Cpessoa aluno;
+    FILE *bin;
+
+    if((bin = fopen("arquivo_binario.bin", "rb")) == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+    } else {
+        while(fread(&aluno, sizeof(Cpessoa), 1, bin) == 1) {
+            printf("Nome: %s\n", aluno.nome);
+            printf("Idade: %d\n", aluno.idade);
+        }
+        fclose(bin);
+    }
 }
 
 int main(void) {
-	Cpessoa *aluno;
+	Cpessoa *alunos;
 	int option = 0, aluno_size = 0;
 	
-    if((aluno = (*Cpessoa)malloc(200*sizeof(Cpessoa))) == NULL) {
+    if((alunos = (Cpessoa*)malloc(200*sizeof(Cpessoa))) == NULL) {
         printf("Erro ao alocar memoria");
     } else {
-        do {
+        while(option != 3) {
             printf("[1] - Inserir\n");
             printf("[2] - Listar\n");
             printf("[3] - Sair\n");
             printf("Digite a opcao: ");
-            scanf("%d", &option);
-  ]          
+            scanf("%d", &option);    
             switch(option) {
                 case 1:
-                    insert(aluno+aluno_size, &aluno_size);
+                    insert();
                     break;
                 case 2:
                     list();
@@ -51,8 +65,8 @@ int main(void) {
                     break;
             }
             system("pause");
-        } while(option != 3);
-        free(aluno);
+        }
+        free(alunos);
     }
 	
 	return 0;

@@ -1,102 +1,154 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-typedef struct vertice {
+// METODOS DOS ITENS
+typedef struct cidade {
     char nome[30];
-    vertice *proxVertice;
-} vertice;
+    struct cidade *proximo;
+} cidade;
 
 typedef struct matrizDeAdjacenscia {
-    vertice *grafo;
     int **matriz;
-} matmatrizDeAdjacensciariz;
+    cidade *raiz;
+} matrizDeAdjacenscia;
 
-// retorna novo vertice em um vácuo
-// proxVertice = null
-vertice *criaRaiz(char nome[]) {
-    vertice *novoVertice = (vertice*)malloc(sizeof(vertice));
-    
-    if(!novoVertice) {
-        printf("Erro: falha na alocacao de memoria!");
+cidade *criaCidade(char *nome) {
+    cidade *novaCidade;
+    if ((novaCidade = (cidade*)malloc(sizeof(cidade))) == NULL) {
+        printf("Erro de alocacao!\n");
         exit(1);
-    }
-    strcpy(novoVertice->nome, nome); 
-    novoVertice->proxVertice = NULL;
-    return novoVertice; 
-};
-
-vertice *acessarIndice(vertice *raiz, int i) {
-    if(raiz == NULL || i == 0) { return raiz; }
-    return acessarIndice(raiz->proxVertice, i-1);
-};
-
-int tamanho(vertice *raiz){
-    if(raiz == NULL) { return 0; } 
-    else if(!raiz->proxVertice) { return 1;} 
-    return tamanho(raiz->proxVertice) + 1;
-};
-
-void adicionarVertice(vertice *raiz, char nome[]) {
-    vertice *novoVertice = criaRaiz(nome);
-    vertice *ultimoItem = acessarIndice(raiz, tamanho(raiz)-1);
-    ultimoItem->proxVertice = novoVertice;
-    return;
+    }    
+    strcpy(novaCidade->nome, nome);
+    novaCidade->proximo = NULL;
+    return novaCidade;
 }
 
-matrizDeAdjacenscia *criarMatriz (vertice *grafo) {
-    matrizDeAdjacenscia *novaMatriz = (matrizDeAdjacenscia*)malloc(sizeof(matrizDeAdjacenscia));
-    novaMatriz->grafo = grafo;
-    novaMatriz->matriz = (int**)malloc(sizeof(int*)*tamanho(grafo));
-    for(int i = 0; i < tamanho(grafo); i++) {
-        novaMatriz->matriz[i] = (int*)malloc(sizeof(int)*tamanho(grafo));
-        for(int j = 0; j < tamanho(grafo); j++) {
-            novaMatriz->matriz[i][j] = 0;
+int addCidade(cidade *raiz, char *nome) {
+    while (raiz->proximo != NULL) {
+        raiz = raiz->proximo;
+    }
+    raiz->proximo = criaCidade(nome);
+    return 0;
+}
+
+cidade *acessar(cidade *raiz, int index) {
+    if (index == 0 || raiz == NULL) {
+        return raiz;
+    }
+    return acessar(raiz->proximo, index-1);
+}
+
+int tamanho(cidade *raiz) {
+    int i = 0;
+    while (raiz != NULL) {
+        raiz = raiz->proximo;
+        i++;
+    }
+    return i;
+}
+
+
+// METODOS DA MATRIZ
+matrizDeAdjacenscia *constroiMatriz(cidade *raiz) {
+    matrizDeAdjacenscia *novaMatriz;
+
+    // Alocação dinámica
+    if((novaMatriz = (matrizDeAdjacenscia*)malloc(sizeof(matrizDeAdjacenscia))) == NULL) {
+        printf("Erro de alocacao!\n");
+        exit(1);
+    }
+    
+    // Definição da raiz
+    novaMatriz->raiz = raiz;
+
+    // Criação da matriz em si
+    int tamanhoGrafo = tamanho(raiz);
+    novaMatriz->matriz = (int**)malloc(sizeof(int) * tamanhoGrafo);
+    if (novaMatriz->matriz == NULL) {
+        printf("Erro de alocacao\n");
+        exit(1);
+    }
+    
+    // Loop das linhas
+    for(int linha = 0; linha < tamanhoGrafo; linha++) {
+        novaMatriz->matriz[linha] = (int*)malloc(sizeof(int) * tamanhoGrafo);
+        if(novaMatriz->matriz[linha] == NULL) {
+            printf("Erro de alocacao\n");
+            exit(1);
+        }
+        for(int coluna = 0; coluna < tamanhoGrafo; coluna++) {
+            novaMatriz->matriz[linha][coluna] = 0;
         }
     }
+
     return novaMatriz;
 }
 
-void adicionarAresta(matrizDeAdjacenscia *matriz, vertice *v1, vertice *v2) {
-    int i = 0;
-    int j = 0;
-    vertice *aux = matriz->grafo;
-    while(aux != NULL) {
-        if(strcmp(aux->nome, v1->nome) == 0) {
-            break;
-        }
-        i++;
-        aux = aux->proxVertice;
-    }
-    aux = matriz->grafo;
-    while(aux != NULL) {
-        if(strcmp(aux->nome, v2->nome) == 0) {
-            break;
-        }
-        j++;
-        aux = aux->proxVertice;
-    }
-    matriz->matriz[i][j] = 1;
-    matriz->matriz[j][i] = 1;
-}
+void printMatriz(matrizDeAdjacenscia *matriz) {
+    int tamanhoMatriz = tamanho(matriz->raiz);
 
-void imprimirMatriz(matrizDeAdjacenscia *matriz) {
-    for(int i = 0; i < tamanho(matriz->grafo); i++) {
-        for(int j = 0; j < tamanho(matriz->grafo); j++) {
-            printf("%d ", matriz->matriz[i][j]);
+    // Cabeçalho
+    printf("                    ");
+    for(int i = 0; i < tamanhoMatriz; i++) {
+        printf("%-20s", acessar(matriz->raiz, i)->nome);
+    }  
+    printf("\n");
+
+    //Linhas
+    for(int linha = 0; linha < tamanho(matriz->raiz); linha++) {
+        printf("%-20s", acessar(matriz->raiz, linha)->nome);
+        for (int coluna = 0; coluna < tamanho(matriz->raiz); coluna++) {
+            printf("%-20d", matriz->matriz[linha][coluna]);
         }
         printf("\n");
     }
 }
 
+void definirDistancia(int distancia, int cidade1, int cidade2, matrizDeAdjacenscia *matriz) {
+    matriz->matriz[cidade1][cidade2] = distancia;
+    matriz->matriz[cidade2][cidade1] = distancia;
+}
 
 
 
+void buscaMenorCaminho(int **matriz, int inicio, int destino, int visitados[], int numVertices, int distanciaAtual, int *menorDistancia, int caminhoAtual[], int melhorCaminho[], int nivel) {
+    visitados[inicio] = 1;
+    caminhoAtual[nivel] = inicio;
+    nivel++;
+
+    if (inicio == destino) {
+        if (distanciaAtual < *menorDistancia || *menorDistancia == -1) {
+            *menorDistancia = distanciaAtual;
+            for (int i = 0; i < nivel; i++) {
+                melhorCaminho[i] = caminhoAtual[i];
+            }
+            melhorCaminho[nivel] = -1; // Marcar o fim do caminho
+        }
+    } else {
+        for (int i = 0; i < numVertices; i++) {
+            if (matriz[inicio][i] > 0 && !visitados[i]) {
+                buscaMenorCaminho(matriz, i, destino, visitados, numVertices, distanciaAtual + matriz[inicio][i], menorDistancia, caminhoAtual, melhorCaminho, nivel);
+            }
+        }
+    }
+
+    visitados[inicio] = 0;
+    nivel--;
+}
 
 
-// vertice *percorrerLista(vertice *raiz) {
-//     if (raiz->proxVertice == NULL) {
-//         return raiz;
-//     }
-//     return percorrerLista(raiz->proxVertice);
-// }
+void menorCaminho(int inicio, int destino, matrizDeAdjacenscia *matriz) {
+    int TAMANHO = tamanho(matriz->raiz);
+    int visitados[TAMANHO] = {0};
+    int caminhoAtual[TAMANHO];
+    int melhorCaminho[TAMANHO];
+    int menorDistancia = -1;
+
+    buscaMenorCaminho(matriz->matriz, inicio, destino, visitados, TAMANHO, 0, &menorDistancia, caminhoAtual, melhorCaminho, 0);
+
+    printf("Melhor Caminho: ");
+    for (int i = 0; melhorCaminho[i] != -1; i++) {
+        printf("%s -> ", acessar(matriz->raiz, melhorCaminho[i])->nome);
+    }
+}

@@ -6,9 +6,9 @@
 int main() {
 long int i;
     double *a;
-    a = (double *)malloc(tamanho * sizeof(double));
+    a = (double *)malloc(TAMANHO * sizeof(double));
  
-    for(i = 0; i < tamanho; i++) {
+    for(i = 0; i < TAMANHO; i++) {
         a[i] = 0;
     }
         
@@ -20,7 +20,6 @@ long int i;
         printf("c) Posicao [%d] da memoria dinamicamente alocada %x\n", j, a+j);
     }
     printf("\n");
-    printf("d) O deslocamento entre cada endereco de memoria sera de 8 bytes,\n visto que esse e o tamanho de variaveis do dipo double\n\n");
  
     system("pause");
     free(a);

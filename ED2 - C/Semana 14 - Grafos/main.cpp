@@ -1,40 +1,29 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "grafo.h"
 
 int main() {
-    vertice *raiz;
-    char msg[30] = "alvorada";
-
-    // Testando a criação de um grafo
-    raiz = criaRaiz(msg);
-    strcpy(msg, "porto alegre");
-    adicionarVertice(raiz, msg);
-    strcpy(msg, "vimao");
-    adicionarVertice(raiz, msg);
-    strcpy(msg, "canoas");
-    adicionarVertice(raiz, msg);
-    strcpy(msg, "teste4");
-    adicionarVertice(raiz, msg);
-    strcpy(msg, "teste5");
-    adicionarVertice(raiz, msg);
-    strcpy(msg, "teste6");
-    adicionarVertice(raiz, msg);
-
-    // Testando a criação de uma matriz de adjacência
-    matrizDeAdjacenscia *matriz = criarMatriz(raiz);
-    adicionarAresta(matriz, acessarIndice(raiz, 0), acessarIndice(raiz, 1));
-    adicionarAresta(matriz, acessarIndice(raiz, 0), acessarIndice(raiz, 2));
-    adicionarAresta(matriz, acessarIndice(raiz, 0), acessarIndice(raiz, 3));
-    adicionarAresta(matriz, acessarIndice(raiz, 2), acessarIndice(raiz, 0));
+    char nome[30] = "portoAlegre";
+    cidade *cidades = criaCidade(nome);
+    strcpy(nome, "saoPaulo");
+    addCidade(cidades, nome);
+    strcpy(nome, "rioDeJaneiro");
+    addCidade(cidades, nome);
+    
+    matrizDeAdjacenscia *matriz = constroiMatriz(cidades);
 
 
-    for(int i = 0; i < tamanho(raiz); i++){
-        printf("%s\n", acessarIndice(raiz, i)->nome);
-    }
+    printf("cidade %d: %s\n", 0, acessar(cidades, 0)->nome);
+    printf("cidade %d: %s\n", 1, acessar(cidades, 1)->nome);
+    printf("cidade %d: %s\n", 2, acessar(cidades, 2)->nome);
 
-    printf("Tamanho do grafo %d\n", tamanho(raiz));
+    printMatriz(matriz);
 
-    imprimirMatriz(matriz);
-    return 0; 
+
+    definirDistancia(300, 1, 0, matriz);
+
+    printMatriz(matriz);
+
+    menorCaminho(0, 1, matriz);
 }
