@@ -4,15 +4,15 @@
 
 int main() {
     vertice *raiz;
-    char msg[30] = "testanmto";
+    char msg[30] = "alvorada";
 
     // Testando a criação de um grafo
     raiz = criaRaiz(msg);
-    strcpy(msg, "teste1");
+    strcpy(msg, "porto alegre");
     adicionarVertice(raiz, msg);
-    strcpy(msg, "teste2");
+    strcpy(msg, "vimao");
     adicionarVertice(raiz, msg);
-    strcpy(msg, "teste3");
+    strcpy(msg, "canoas");
     adicionarVertice(raiz, msg);
     strcpy(msg, "teste4");
     adicionarVertice(raiz, msg);
